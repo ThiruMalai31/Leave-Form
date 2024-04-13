@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: lightsalmon;
+        }
+        button{
+            margin-left: 250px;
+        }
+        th,td{
+            padding: 15px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Leave Form</h1>
+    <form>
+        <fieldset>
+            <label>
+                <p>Name</p>
+                <input type="text" class="Name" required>
+            </label>
+            <label>
+                <p>Roll_No</p>
+                <input type="text" class="rollno">
+            </label>
+            <label>
+                <p>No of Leave To be Applied</p>
+                <input type="text" class="leave">
+            </label>
+            <label>
+                <p>No of Days Of Leave Already Applied</p>
+                <input type="text" class="taken">
+            </label>
+            <label>
+                <p>From
+                </p>
+                <input type="date" value="date" name="date" class="from" >
+            </label>
+
+            <label>
+                <p>To
+                </p>
+                <input type="date" value="date" name="date" class="to">
+            </label>
+            <label>
+                <p>Reason For Leave
+                </p>
+                <textarea class="reason"></textarea>
+            </label>
+        </fieldset>
+        <button type="button"  class="submit">Submit</button>
+
+        <table>
+
+        </table>
+    </form>
+    <script>
+        var Name=document.querySelector(".Name");
+        var rollno=document.querySelector(".rollno");
+        var leave=document.querySelector(".leave");
+        var taken=document.querySelector(".taken");
+        var comment=document.querySelector(".reason");
+        var submit=document.querySelector(".submit");
+        var table=document.querySelector("table");
+        var from=document.querySelector(".from");
+        var to=document.querySelector(".to");
+
+        var set=0;
+        var cnt=0;
+        var header=0;
+        submit.addEventListener("click",function(){
+            var thead=document.createElement("th");
+            
+
+            var trow=document.createElement("tr");
+            var trow1=document.createElement("tr");
+            var td1=document.createElement("td");
+            var td2=document.createElement("td");
+            var td3=document.createElement("td");
+            var td4=document.createElement("td");
+            var td5=document.createElement("td");
+            var td6=document.createElement("td");
+            var td7=document.createElement("td");
+
+            
+            var th1=document.createElement("th");
+            var th2=document.createElement("th");
+            var th3=document.createElement("th");
+            var th4=document.createElement("th");
+            var th5=document.createElement("th");
+            var th6=document.createElement("th");
+            var th7=document.createElement("th");
+
+            if(header==0){
+                
+
+            th1.textContent="Name";
+            trow1.appendChild(th1);
+            th2.textContent="Roll_No"
+            trow1.appendChild(th2);
+            th3.textContent="Leave to be Applied";
+            trow1.appendChild(th3);
+            th4.textContent="Leave Already Applied";
+            trow1.appendChild(th4);
+            th7.textContent="reason For Leave";
+            trow1.appendChild(th7);
+            th5.textContent="From";
+            trow1.appendChild(th5);
+            th6.textContent="To";
+            trow1.appendChild(th6);
+            table.appendChild(trow1);
+            header++;
+            }
+
+
+
+
+            if(Name.value!=""){
+            td1.textContent=Name.value;
+            cnt++;
+            }
+            console.log(td1);
+
+            if(rollno.value!=""){
+            td2.textContent=rollno.value;
+            cnt++;
+            }
+            if(leave.value!=""){
+            td3.textContent=leave.value;
+            cnt++;
+            }
+            if(taken.value!=""){
+            td4.textContent=taken.value;
+            cnt++;
+            }
+            if(comment.value!=""){
+            td5.textContent=comment.value;
+            cnt++;
+            }
+            if(from.value!=""){
+                td6.textContent=from.value;
+                cnt++;
+            }
+            if(to.value!=""){
+                td7.textContent=to.value;
+                cnt++;
+            }
+
+            Name.value="";
+            rollno.value="";
+            leave.value="";
+            taken.value="";
+            comment.value="";
+            from.value="";
+            to.value="";
+            if(cnt==7){
+                cnt=0;
+            trow.appendChild(td1);
+            trow.appendChild(td2);
+            trow.appendChild( td3);
+            trow.appendChild(td4);
+            trow.appendChild(td5);
+            trow.appendChild(td6);
+            trow.appendChild(td7);
+            console.log(trow);
+            table.appendChild(trow);
+            console.log(table);
+            }
+        });
+
+
+        Name.addEventListener("keypress",function(event){
+
+            if(event.key=="Enter" && Name.value==""){
+                alert("Enter Name Correctly");
+            }
+        
+        });
+        rollno.addEventListener("keypress",function(event){
+            if(event.key=="Enter"){
+            var alp=0;
+            var num=0;
+            var check=rollno.value;
+            console.log("check "+check);
+            for(var i=0;i<rollno.value.length;i++){
+                console.log("roll "+check[i]);
+                if((check[i]>='a' && check[i]<='z') || (check[i]>='A' && check[i]<='Z')){
+                    alp=1
+                }
+                if(check[i]>=0 && check[i]<=9){
+                    num=1;
+                }
+            }
+            if(alp==0 || num==0){
+                alert("Your Roll no Need Atleast One Alphabet and Numer");
+            }
+        }
+        });
+
+        taken.addEventListener("keypress",function(event){
+            // console.log("value "+taken.value);
+            if(event.key=="Enter" && taken.value==""){
+                alert("Enter Valid Details");
+            }
+            else if(event.key=="Enter" && taken.value>10){
+                alert("You Reached Your Limit");
+            }
+        });
+
+            
+
+    </script>
+</body>
+
+</html>
